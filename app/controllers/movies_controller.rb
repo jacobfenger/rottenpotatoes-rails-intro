@@ -11,12 +11,17 @@ class MoviesController < ApplicationController
   end
 
   def index
-    # Instead of just getting all movies, but must sort them by either
-    # title or release date.
+    # By default, just grab all movies in the db to be displayed
     @movies = Movie.all
     
+    # If the 'Movie Title' column is clicked, the :sort param will equal
+    # title. Therefore, this code should sort the movies by title.
     if(params[:sort] == 'title')
-      @movies = 'no'
+      @movies = Movie.order(params[:sort])
+    elsif(params[:sort] == 'release_date')
+      @movies = Movie.order(params[:sort])
+    else
+      @movies = Movie.all
     end
     #@movies = Movie.find(:all)
   end
