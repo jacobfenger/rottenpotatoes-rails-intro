@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     
     if(params[:sort] == 'title')
-      Rails.logger.debug "message!!"
+      @movies = 'no'
     end
     #@movies = Movie.find(:all)
   end
