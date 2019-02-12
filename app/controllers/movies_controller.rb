@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   def index
     # Instead of just getting all movies, but must sort them by either
     # title or release date.
-    @movies = Movie.find(:all, :order => params[:sort_by])
+    @movies = Movie.find(:all)
   end
 
   def new
