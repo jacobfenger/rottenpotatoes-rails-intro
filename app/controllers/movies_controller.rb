@@ -14,6 +14,10 @@ class MoviesController < ApplicationController
     # Instead of just getting all movies, but must sort them by either
     # title or release date.
     @movies = Movie.all
+    
+    if(params[:sort] == 'title')
+      puts 'SORTED BY TITLE'
+    end
     #@movies = Movie.find(:all)
   end
 
