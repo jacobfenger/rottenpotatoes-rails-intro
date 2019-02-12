@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     
     if(params[:sort] == 'title')
-      puts 'SORTED BY TITLE'
+      Rails.logger.debug "message!!"
     end
     #@movies = Movie.find(:all)
   end
