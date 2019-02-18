@@ -31,6 +31,8 @@ class MoviesController < ApplicationController
       session[:sort] = @sort
       session[:ratings] = @ratings
       @movies = Movie.where(rating: @ratings.keys).order(@sort.to_sym)
+    else 
+      @movies = Movie.all
     end
   end
 
