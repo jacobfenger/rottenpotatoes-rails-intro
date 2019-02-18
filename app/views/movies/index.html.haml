@@ -1,6 +1,14 @@
 -#  This file is app/views/movies/index.html.haml
 %h1 All Movies
 
+// Add the check boxes for users to search for specific rated movies
+= form_tag movies_path, :method => :get, :id => "ratings_form" do
+  Include:
+  - @all_ratings.each do |rating|
+    = rating
+    = check_box_tag "ratings[#{rating}]", 1, @ratings ? (@ratings.keys.include?(rating) ? true : false) : true # This is the worst code ever, but I strugged on this part.
+  = submit_tag 'Refresh', :id => 'ratings_submit'
+
 %table#movies
   %thead
     %tr

@@ -11,19 +11,27 @@ class MoviesController < ApplicationController
   end
 
   def index
-    # By default, just grab all movies in the db to be displayed
-    @movies = Movie.all
-    
-    # If the 'Movie Title' column is clicked, the :sort param will equal
-    # title. Therefore, this code should sort the movies by title.
-    if(params[:sort] == 'title')
-      @movies = Movie.order(params[:sort])
-    elsif(params[:sort] == 'release_date')
-      @movies = Movie.order(params[:sort])
-    else
-      @movies = Movie.all
+    # Get all possible ratings from movie model
+    @all_ratings = Movie.all_ratings
+
+    # These OR statements are necessary in order to maintain consistent
+    # states (Aka, keep the same boxes checked on refresh)
+    @sort = params[:sort] || session[:sort]
+    @ratings = params[:ratings] || session[:ratings]
+
+    # I do not think this is the best way to do this, but after several hours
+    # this seemed to be the most concise and easiest for me to understand.
+    if @sort and !@ratings
+      session[:sort] = @sort
+      @movies = Movie.order(@sort.to_sym)
+    elsif @ratings and !@sort
+      session[:ratings] = @ratings
+      @movies = Movie.where(rating: @ratings.keys)
+    elsif @sort and @ratings 
+      session[:sort] = @sort
+      session[:ratings] = @ratings
+      @movies = Movie.where(rating: @ratings.keys).order(@sort.to_sym)
     end
-    #@movies = Movie.find(:all)
   end
 
   def new
