@@ -3,4 +3,9 @@ Jacob Fenger
 Jacobfenger@tamu.edu
 
 2/12/2019 - Part 1 Complete
+2/18/2019 - Part 2 Complete
+2/18/2019 - Part 3 Complete
 
+Github: https://github.com/jacobfenger/rottenpotatoes-rails-intro
+
+Heroku: https://damp-waters-49518.herokuapp.com/
