@@ -8,4 +8,8 @@ class Movie < ActiveRecord::Base
         #We must then call uniq afterwards to only have 1 of each rating
         self.pluck(:rating).uniq
     end 
+
+    def self.with_ratings(ratings)
+    	
+    end 
 end
